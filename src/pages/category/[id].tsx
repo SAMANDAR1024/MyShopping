@@ -46,15 +46,18 @@ function CategorieProduct() {
       {categoriaPage.map((item) => {
         return (
           
-            <div key={item.id} className="w-64 h-[350px] relative mb-5 p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
-              <Link href={`/card/${item.id}`}>
+            <div key={item.id} className="w-64 h-[400px] flex flex-col justify-between relative mb-5 p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
+              <Link href={`/product/${item.id}`}>
                 <Image
                   width={200}
                   height={250}
                   src={item.imageUrl}
                   alt="rasm"
                 />
-                <h2 className="my-2 cursor-pointer">{item.name}</h2>
+               
+                <h2 className="my-2 text-2xl font-bold cursor-pointer">{item.name}</h2>
+                <p className="j opacity-90 ">{item.description}</p>
+              
               </Link>
               <div className="flex items-center justify-between">
                 <p className="cursor-pointer">

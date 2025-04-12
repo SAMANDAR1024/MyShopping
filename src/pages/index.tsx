@@ -14,10 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  // const sum_price=useSelector((state:RootState)=> state.cart.sum_price)
   return (
     <div
+
       className={`${geistSans.className} ${geistMono.className}  font-[family-name:var(--font-geist-sans)]`}
     >
+      {/* home:{sum_price} */}
       <Banner />
       <Products />
       <Footer />

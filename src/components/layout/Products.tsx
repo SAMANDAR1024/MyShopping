@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Like from "../icons/Like";
 import Shop from "../icons/Shop";
+import { addToCart } from "@/store/slices/cart.slice";
+import { useDispatch } from "react-redux";
 export type ProductType = {
   categoryId: number;
   createdAt: string;
@@ -16,6 +18,7 @@ export type ProductType = {
 };
 function Products() {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -25,6 +28,10 @@ function Products() {
         setProducts(res.data.items);
       });
   }, []);
+
+  const CartQoshish = (product: ProductType) => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className="grid grid-cols-4 container w-full mx-auto px-6 py-4">
       {products.map((item) => {
@@ -49,8 +56,9 @@ function Products() {
                   som
                 </p>
                 <div className="border-2 cursor-pointer border-amber-500 p-1 rounded-xl">
-                  <button>
+                  <button onClick={() => CartQoshish(item)}>
                     <Shop />
+                  
                   </button>
                   <button className="absolute right-3 top-1">
                     <Like />
