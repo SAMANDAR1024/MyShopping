@@ -32,6 +32,20 @@ function Products() {
   const CartQoshish = (product: ProductType) => {
     dispatch(addToCart(product));
   };
+
+  if (!products) {
+    return (
+      <div className="cssload-container">
+        <ul className="cssload-flex-container">
+          <li>
+            <span className="cssload-loading cssload-one"></span>
+            <span className="cssload-loading cssload-two"></span>
+            <span className="cssload-loading-center"></span>
+          </li>
+        </ul>
+      </div>
+    );
+  }
   return (
     <div className="grid grid-cols-4 container w-full mx-auto px-6 py-4">
       {products.map((item) => {
@@ -58,7 +72,6 @@ function Products() {
                 <div className="border-2 cursor-pointer border-amber-500 p-1 rounded-xl">
                   <button onClick={() => CartQoshish(item)}>
                     <Shop />
-                  
                   </button>
                   <button className="absolute right-3 top-1">
                     <Like />

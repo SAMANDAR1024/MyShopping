@@ -58,18 +58,24 @@ const Banner = () => {
             <Image
               src={banners[current].imageUrl}
               alt={banners[current].title}
-              width={1800}
-              height={400}
-              className="object-contain w-full h-full rounded-2xl"
+              width={1400}
+              height={250}
+            //   className="object-contain w-full h-full rounded-2xl"
               priority
             />
 
-            <div className="absolute w-[1600px] inset-0 bg-gradient-to-b from-black/30 to-black/70 rounded-2xl flex items-end px-6 pb-6"></div>
+            <div className="absolute w-[1900px] inset-0 bg-gradient-to-b from-black/30 to-black/70 rounded-2xl flex items-end px-6 pb-6"></div>
           </div>
         ) : (
-          <div className="flex items-center justify-center h-full text-white bg-gray-800 rounded-2xl">
-            <p>Loading banners...</p>
-          </div>
+            <div className="cssload-container">
+              <ul className="cssload-flex-container">
+                <li>
+                  <span className="cssload-loading cssload-one"></span>
+                  <span className="cssload-loading cssload-two"></span>
+                  <span className="cssload-loading-center"></span>
+                </li>
+              </ul>
+            </div>
         )}
       </div>
     </div>

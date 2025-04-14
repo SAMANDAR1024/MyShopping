@@ -1,9 +1,12 @@
 "use client";
-import Products from "@/components/layout/Products";
+import Shop from "@/components/icons/Shop";
+import Products, { ProductType } from "@/components/layout/Products";
+import { addToCart } from "@/store/slices/cart.slice";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export type Product = {
   id: number;
@@ -20,6 +23,7 @@ function Product() {
   const params = useParams();
   const id = params?.id;
   const [product, setProduct] = useState<Product>();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!id) return;
@@ -28,17 +32,26 @@ function Product() {
       setProduct(res.data);
     });
   }, [id]);
-  
+
   if (!id) return <div>ID topilmadi</div>;
 
   if (!product) {
     return (
-      <div className="mx-auto container text-center mt-20 text-4xl ">
-        Malumot Yoq
+      <div className="cssload-container">
+        <ul className="cssload-flex-container">
+          <li>
+            <span className="cssload-loading cssload-one"></span>
+            <span className="cssload-loading cssload-two"></span>
+            <span className="cssload-loading-center"></span>
+          </li>
+        </ul>
       </div>
     );
   }
 
+  const SavatgaQoshish = (product: ProductType) => {
+    dispatch(addToCart(product));
+  };
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8 md:px-14 py-6">
@@ -60,12 +73,24 @@ function Product() {
               {product.description}
             </p>
             <p className="text-2xl font-semibold text-blue-600 mt-4">
-              ${product.price}
+              {product.price.toLocaleString("ru")} So`m
             </p>
             <p className="flex justify-center md:justify-start items-center gap-2 text-lg mt-2">
               <span className="font-medium">Stock:</span>
               <span className="text-red-500">{product.stock}</span>
             </p>
+
+            <div className="flex my-5">
+              <button
+                className="bg-blue-500 cursor-pointer flex gap-2 p-2 rounded-2xl text-white"
+                onClick={() => {
+                  SavatgaQoshish(product);
+                }}
+              >
+                <Shop />
+                Savatga Qoshish
+              </button>
+            </div>
           </div>
         </div>
 
