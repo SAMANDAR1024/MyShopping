@@ -55,7 +55,7 @@ function Products() {
               <Link href={`/product/${item.id}`}>
                 <Image
                   width={200}
-                  height={250}
+                  height={350}
                   src={item.imageUrl}
                   alt="rasm"
                 />
@@ -70,7 +70,7 @@ function Products() {
                   som
                 </p>
                 <div className="border-2 cursor-pointer border-amber-500 p-1 rounded-xl">
-                  <button onClick={() => CartQoshish(item)}>
+                  <button className="cursor-pointer" onClick={() => CartQoshish(item)}>
                     <Shop />
                   </button>
                   <button className="absolute right-3 top-1">

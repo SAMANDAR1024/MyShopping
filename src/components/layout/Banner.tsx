@@ -60,7 +60,7 @@ const Banner = () => {
               alt={banners[current].title}
               width={1400}
               height={250}
-            //   className="object-contain w-full h-full rounded-2xl"
+              className="object-contain  rounded-2xl"
               priority
             />
 
