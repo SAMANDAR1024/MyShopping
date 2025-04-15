@@ -1,7 +1,6 @@
 import { minusCount, plusCount, removeCart } from "@/store/slices/cart.slice";
 import { RootState } from "@/store/types";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Remove from "../icons/remove";
@@ -21,10 +20,15 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
   };
   if (!modal) return null;
 
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.count,
+    0
+  );
+
   return (
     <div
       className="fixed z-20 inset-0  bg-opacity-75 bg-black/90 flex justify-center items-center"
-      onClick={() => setModal(false)} // Modalni yopish
+      onClick={() => setModal(false)}
     >
       <div
         className="bg-white p-8 rounded-lg  w-[1000px]"
@@ -34,7 +38,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
           <h2 className="text-3xl font-semibold">Savatcha</h2>
           <p
             className=" text-3xl  font-bold cursor-pointer"
-            onClick={() => setModal(false)} // Modalni yopish
+            onClick={() => setModal(false)}
           >
             &times;
           </p>
@@ -90,15 +94,30 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
                   </div>
                 </div>
               ))}
+
+              <div className="text-end">
+                <p className="text-2xl  ">
+                  Jami Narxi :{" "}
+                  <span className="font-bold">
+                    {" "}
+                    {totalPrice.toLocaleString("ru")} So`m
+                  </span>
+                </p>
+                <button
+                  onClick={() => setModal(false)}
+                  className="bg-blue-500 text-white p-2 rounded-2xl w-66 mt-3 cursor-pointer"
+                >
+                  Harid Qilish
+                </button>
+              </div>
             </>
           ) : (
             <div className="text-center flex flex-col">
               <h2 className="text-2xl font-bold">Savatchada Hech nma yoq</h2>
-              <Link href={"/"}>
-                <button className=" cursor-pointer  mx-auto text-2xl font-bold  mt-5 p-2 border-2 rounded-2xl w-46 border-blue-400">
-                  Xarid Qilish
-                </button>
-              </Link>
+
+              <button className=" cursor-pointer  mx-auto text-2xl font-bold  mt-5 p-2 border-2 rounded-2xl w-46 border-blue-400">
+                Xarid Qilish
+              </button>
             </div>
           )}
         </div>
