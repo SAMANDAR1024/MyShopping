@@ -1,5 +1,5 @@
-import { ProductType } from "@/components/layout/Products";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ProductType } from "../types";
 
 export type CartProductType = ProductType & { count: number };
 

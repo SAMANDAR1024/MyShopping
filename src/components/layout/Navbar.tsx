@@ -10,6 +10,9 @@ import { RootState } from "@/store/store";
 function Navbar() {
   const [modal, setModal] = useState(false);
   const cartCount = useSelector((state: RootState) => state.cart.items.length);
+  const likeCount = useSelector(
+    (state: RootState) => state.likeCart.items.length
+  );
   return (
     //     <nav>
     //     <Link href={"/"}>Logo</Link>
@@ -37,10 +40,15 @@ function Navbar() {
               <UserIcon />
               <p>Kirish</p>
             </div>
-            <div className=" flex flex-col items-center">
+            <Link href={"/liked"} className="relative flex flex-col items-center">
               <Like />
+              {likeCount > 0 && (
+                <span className="absolute -top-2 right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {likeCount}
+                </span>
+              )}
               <p>Sevimlilar</p>
-            </div>
+            </Link>
             <div
               onClick={() => {
                 setModal(true);
@@ -49,7 +57,7 @@ function Navbar() {
             >
               <Shop />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                <span className="absolute -top-2 right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
               )}

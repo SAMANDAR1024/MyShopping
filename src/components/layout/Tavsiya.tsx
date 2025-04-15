@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductType, RootState } from "@/store/types";
 import { like } from "@/store/slices/like.slice";
 
-function Products() {
+function Tavsiya() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const dispatch = useDispatch();
   const likedItems = useSelector((state: RootState) => state.likeCart.items);
@@ -44,36 +44,41 @@ function Products() {
     );
   }
   return (
-    <div className="grid grid-cols-4 container w-full mx-auto px-6 py-4">
+    <div className="flex flex-col overflow-auto gap-2 container w-full mx-auto px-6 py-4">
       {products.map((item) => {
         const isLiked = likedItems.some((liked) => liked.id === item.id);
         return (
           <div key={item.id}>
-            <div className="w-64 flex flex-col justify-between h-[400px] relative mb-5 p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
-              <Link href={`/product/${item.id}`}>
+            <div className="w-[1350px] flex items-center gap-5 border justify-between relative  p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
+              <Link className="flex items-center gap-5" href={`/product/${item.id}`}>
                 <Image
-                  width={200}
-                  height={350}
+                  width={80}
+                  height={80}
                   src={item.imageUrl}
                   alt="rasm"
                 />
-                <h2 className="my-2 cursor-pointer">{item.name}</h2>
-                <p className="j opacity-90 text-sm">{item.description}</p>
+                <div>
+                <h2 className="my-1 text-2xl cursor-pointer">{item.name}</h2>
+                <p className=" opacity-90 text-sm">{item.description}</p>
+                </div>
               </Link>
-              <div className="flex items-center mt-10 justify-between">
-                <p className="cursor-pointer">
-                  <span className="font-bold text-lg">
+              <div className="flex items-center mt-1 justify-between">
+                <div className="pr-10 flex flex-col gap-2">
+                <p className="cursor-pointer text-end">
+                  <span className="font-bold text-2xl ">
                     {item.price.toLocaleString("ru")}
                   </span>{" "}
                   som
                 </p>
-                <div className="border-2 cursor-pointer border-amber-500 p-1 rounded-xl">
+                <div className="border-2 flex cursor-pointer bg-blue-500 text-white border-blue-500 p-2 rounded-xl">
                   <button
-                    className="cursor-pointer"
+                    className="cursor-pointer flex"
                     onClick={() => CartQoshish(item)}
                   >
-                    <Shop />
+                   Savatga Qoshish  <Shop />
                   </button>
+                </div>
+                </div>
                   <button
                     onClick={() => Liked(item)}
                     className="absolute right-3 top-1"
@@ -86,7 +91,6 @@ function Products() {
                       </span>
                     )}
                   </button>
-                </div>
               </div>
             </div>
           </div>
@@ -96,4 +100,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Tavsiya;
