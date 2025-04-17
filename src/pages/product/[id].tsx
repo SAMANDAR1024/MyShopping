@@ -3,10 +3,8 @@ import Shop from "@/components/icons/Shop";
 import Products from "@/components/layout/Products";
 import { addToCart } from "@/store/slices/cart.slice";
 import { ProductType } from "@/store/types";
-import axios from "axios";
+import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export type Product = {
@@ -20,22 +18,20 @@ export type Product = {
   imageUrl: string;
 };
 
-function Product() {
-  const params = useParams();
-  const id = params?.id;
-  const [product, setProduct] = useState<Product>();
+export const getServerSideProps = async ({
+  params
+}: GetServerSidePropsContext) => {
+  const res = await fetch(
+    `https://nt.softly.uz/api/front/products/${params?.id}`
+  );
+  const product = await res.json();
+  return { props: { product: product } };
+};
+
+function Product({ product }: any) {
+  console.log(product); 
+  
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!id) return;
-    axios.get(`https://nt.softly.uz/api/front/products/${id}`).then((res) => {
-      console.log(res.data);
-      setProduct(res.data);
-    });
-  }, [id]);
-
-  if (!id) return <div>ID topilmadi</div>;
-
   if (!product) {
     return (
       <div className="cssload-container">
@@ -55,7 +51,7 @@ function Product() {
   };
   return (
     <>
-      <div className="container mx-auto px-4 sm:px-8 md:px-14 py-6">
+      <div className="container  mx-auto px-4 sm:px-8 md:px-14 py-10">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
           <div className="w-full md:w-auto flex justify-center">
             <Image
@@ -74,7 +70,7 @@ function Product() {
               {product.description}
             </p>
             <p className="text-2xl font-semibold text-blue-600 mt-4">
-              {product.price.toLocaleString("ru")} So`m
+              {(product.price).toLocaleString("ru")} So`m
             </p>
             <p className="flex justify-center md:justify-start items-center gap-2 text-lg mt-2">
               <span className="font-medium">Stock:</span>

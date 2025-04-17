@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-// import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export type BAnnerType = {
   id: number;
@@ -32,50 +31,50 @@ const Banner = () => {
   };
 
   return (
-    <div className=" mx-auto px-8">
-      <div className="z-0 relative w-[1400px] mx-auto mt-4 h-[250px] md:h-[400px] overflow-hidden rounded-2xl shadow-lg group">
+    <div className="w-full px-4 md:px-8">
+      <div className="relative w-full max-w-[1400px] mx-auto mt-4 h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] overflow-hidden rounded-2xl shadow-lg group">
+        
+        {/* Prev button */}
         <button
           onClick={handlePrev}
           aria-label="Previous slide"
-          className="absolute top-1/2 left-4 z-20 -translate-y-1/2 p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
+          className="absolute top-1/2 left-2 sm:left-4 z-20 -translate-y-1/2 p-1 sm:p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
         >
-          {/* <ArrowLeft className="w-6 h-6 md:w-7 md:h-7" /> */}←
+          ←
         </button>
 
+        {/* Next button */}
         <button
           onClick={handleNext}
           aria-label="Next slide"
-          className="absolute top-1/2 right-4 z-20 -translate-y-1/2 p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
+          className="absolute top-1/2 right-2 sm:right-4 z-20 -translate-y-1/2 p-1 sm:p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
         >
-          {/* <ArrowRight className="w-6 h-6 md:w-7 md:h-7" /> */}→
+          →
         </button>
 
+        {/* Banner content */}
         {banners.length > 0 ? (
           <div
             key={banners[current].id}
-            className="w-[1600px] h-full transition-all duration-700 ease-in-out relative"
+            className="w-full h-full transition-all duration-700 ease-in-out relative"
           >
             <Image
               src={banners[current].imageUrl}
               alt={banners[current].title}
-              width={1400}
-              height={250}
-              className="object-contain  rounded-2xl"
+              fill
+              className="object-cover rounded-2xl"
               priority
             />
 
-            <div className="absolute w-[1900px] inset-0 bg-gradient-to-b from-black/30 to-black/70 rounded-2xl flex items-end px-6 pb-6"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70 rounded-2xl flex items-end px-4 sm:px-6 pb-6">
+              {/* You can show banner title here */}
+              <p className="text-white text-sm sm:text-lg font-medium">{banners[current].title}</p>
+            </div>
           </div>
         ) : (
-            <div className="cssload-container">
-              <ul className="cssload-flex-container">
-                <li>
-                  <span className="cssload-loading cssload-one"></span>
-                  <span className="cssload-loading cssload-two"></span>
-                  <span className="cssload-loading-center"></span>
-                </li>
-              </ul>
-            </div>
+          <div className="flex justify-center items-center h-full text-center text-gray-500">
+            Yuklanmoqda...
+          </div>
         )}
       </div>
     </div>

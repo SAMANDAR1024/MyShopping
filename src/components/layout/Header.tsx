@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Categories from "./Categories";
 import Navbar from "./Navbar";
 
@@ -28,7 +29,9 @@ export default function Header() {
                     strokeWidth="2"
                   />
                 </svg>
-                Toshkent
+             <Link href={"/about"}>
+             <p> Toshkent</p>
+             </Link>
               </div>
               <div className="flex items-center gap-5 ">
                 <p className="cursor-pointer hover:bg-gray-700 rounded-xl px-2 py-1 ">
