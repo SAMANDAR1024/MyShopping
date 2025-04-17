@@ -44,7 +44,7 @@ function Products() {
     );
   }
   return (
-    <div className="grid grid-cols-4 container w-full mx-auto px-6 py-4">
+    <div className="grid grid-cols-5  container w-full mx-auto px-6 py-4">
       {products.map((item) => {
         const isLiked = likedItems.some((liked) => liked.id === item.id);
         return (
