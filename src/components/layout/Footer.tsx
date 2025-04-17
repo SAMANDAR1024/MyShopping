@@ -9,7 +9,7 @@ function Footer() {
         <div className=" flex flex-col gap-4">
           <p className=" ">Savolingiz bormi? Telefon qiling</p>
           <a
-            href="tel:+998970567985"
+            href="+998944085444"
             className=" hover:text-blue-300 text-3xl font-bold"
           >
             +998 94 408 54 44

@@ -1,7 +1,8 @@
 "use client";
 import Shop from "@/components/icons/Shop";
-import Products, { ProductType } from "@/components/layout/Products";
+import Products from "@/components/layout/Products";
 import { addToCart } from "@/store/slices/cart.slice";
+import { ProductType } from "@/store/types";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";

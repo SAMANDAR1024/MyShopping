@@ -62,7 +62,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
                             height={70}
                             alt="img"
                           />
-                          <p className="text-xl w-40">{item.name}</p>
+                          <p className="text-xl w-44 text-start">{item.name}</p>
                         </div>
 
                         <div className="flex gap-5 items-center bg-slate-200 rounded-xl p-2">
@@ -85,7 +85,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
                           </button>
                         </div>
 
-                        <div className="flex w-50 text-end justify-end gap-2 items-center">
+                        <div className="flex w-60 text-end justify-end gap-2 items-center">
                           <p className="text-lg font-bold font-mono">
                             {(item.count * item.price).toLocaleString("ru")}{" "}
                             So`m
@@ -163,7 +163,10 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
             )}
           </div>
         </div>
-        <div     onClick={(e) => e.stopPropagation()} className="bg-white p-8 rounded-lg w-[1500px] flex flex-col">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="bg-white p-8 rounded-lg w-[1500px] flex flex-col"
+        >
           <h2 className="text-2xl font-bold mb-4">Tavsiya etamiz</h2>
           <div className="h-[220px] overflow-y-auto">
             <Tavsiya />

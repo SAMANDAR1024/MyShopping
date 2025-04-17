@@ -57,9 +57,9 @@ function Products() {
                   src={item.imageUrl}
                   alt="rasm"
                 />
+              </Link>
                 <h2 className="my-2 cursor-pointer">{item.name}</h2>
                 <p className="j opacity-90 text-sm">{item.description}</p>
-              </Link>
               <div className="flex items-center mt-10 justify-between">
                 <p className="cursor-pointer">
                   <span className="font-bold text-lg">
@@ -79,9 +79,9 @@ function Products() {
                     className="absolute right-3 top-1"
                   >
                     {isLiked ? (
-                      <span className="text-red-500 text-2xl">❤️</span>
+                      <span className="text-red-500 text-xl cursor-pointer">❤️</span>
                     ) : (
-                      <span className="text-gray-400 text-2xl">
+                      <span className="text-gray-400 text-xl">
                         <Like />
                       </span>
                     )}

@@ -22,7 +22,7 @@ function LikedProducts() {
     <div className="container mx-auto px-16 py-10">
       {likedItems.length > 0 ? (
         <>
-      <h1 className="text-3xl font-bold font-mono mb-6">Sevimlilar </h1>
+          <h1 className="text-3xl font-bold font-mono mb-6">Sevimlilar </h1>
           <div className="grid grid-cols-4 ">
             {likedItems.map((item) => {
               const isLiked = likedItems.some((liked) => liked.id === item.id);
@@ -59,9 +59,11 @@ function LikedProducts() {
                           className="absolute right-3 top-1"
                         >
                           {isLiked ? (
-                            <span className="text-red-500 text-2xl">❤️</span>
+                            <span className="text-red-500 text-xl cursor-pointer">
+                              ❤️
+                            </span>
                           ) : (
-                            <span className="text-gray-400 text-2xl">
+                            <span className="text-gray-400 text-xl">
                               <Like />
                             </span>
                           )}
