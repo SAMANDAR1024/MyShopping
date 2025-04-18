@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import { Toaster } from "@/components/ui/sonner";
 import { store } from "@/store/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
@@ -9,6 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <Header />
       <Component {...pageProps} />;
+      <Toaster />
     </Provider>
   );
 }

@@ -7,6 +7,7 @@ import { useState } from "react";
 import Savatcha from "../Modal/Savatcha";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { LoginDialog } from "../Modal/LoginModal";
 
 function Navbar() {
   const [modal, setModal] = useState(false);
@@ -40,10 +41,7 @@ function Navbar() {
 
         {/* Icons */}
         <div className="flex gap-4 sm:gap-6 md:gap-10">
-          <div className="flex flex-col items-center text-xs sm:text-sm">
-            <UserIcon />
-            <p>Kirish</p>
-          </div>
+          <LoginDialog />
 
           <Link
             href={"/liked"}
