@@ -14,10 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import axios from "axios";
-import { toast } from "sonner";
-import { useDispatch } from "react-redux";
 import { login } from "@/store/slices/auth.slice";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z
@@ -64,7 +64,7 @@ export function LoginForm({ onClose }: { onClose: (open: boolean) => void }) {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input type="email" placeholder="shadcn" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -78,7 +78,7 @@ export function LoginForm({ onClose }: { onClose: (open: boolean) => void }) {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input type="password" placeholder="shadcn" {...field} />
               </FormControl>
 
               <FormMessage />

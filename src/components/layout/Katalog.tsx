@@ -9,7 +9,7 @@ export default function Katalog() {
       onClick={() => {
         setKatalog(katalog === false ? true : false);
       }}
-      className="p-2 cursor-pointer bg-yellow-500 rounded-xl flex items-center gap-2 w-32 justify-center"
+      className="p-2 cursor-pointer bg-yellow-500 text-white rounded-xl flex items-center gap-2 w-32 justify-center"
     >
       {katalog === true ? <X /> : <Menu />}
       Katalog

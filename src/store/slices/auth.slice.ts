@@ -4,6 +4,11 @@ type AuthSliceType = {
   user?: {
     id: number;
     name: string;
+    email: string;
+    password: string;
+    image: string;
+    phone: string;
+    role: string;
   };
 };
 const initialState: AuthSliceType = {

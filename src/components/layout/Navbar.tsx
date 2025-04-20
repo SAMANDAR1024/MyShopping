@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Katalog from "./Katalog";
-import UserIcon from "../icons/User";
 import Like from "../icons/Like";
 import Shop from "../icons/Shop";
 import { useState } from "react";

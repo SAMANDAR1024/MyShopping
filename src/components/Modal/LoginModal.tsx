@@ -9,6 +9,16 @@ import UserIcon from "../icons/User";
 import { LoginForm } from "./LoginForm";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/types";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import Link from "next/link";
+import Login from "@/pages/login";
 
 export function LoginDialog() {
   const [open, setOpen] = useState(false);
@@ -16,10 +26,25 @@ export function LoginDialog() {
   return (
     <>
       {name ? (
-        <div className="flex flex-col items-center text-xs sm:text-sm">
-          <UserIcon />
-          {name}
-        </div>
+        // <div className="flex flex-col items-center text-xs sm:text-sm">
+        //
+        //   {name}
+        // </div>
+
+        <Link href={"/login"}>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex flex-col items-center">
+              {" "}
+              <UserIcon />
+              {name}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </Link>
       ) : (
         <div
           onClick={() => setOpen(true)}
