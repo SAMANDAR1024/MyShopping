@@ -55,7 +55,7 @@ function CategorieProduct() {
   }
 
   return (
-    <div className="grid grid-cols-4 container w-full mx-auto px-6 py-4">
+    <div className="flex flex-wrap justify-around gap-10 container w-full mx-auto px-16 py-4">
       {categoriaPage.map((item) => {
         return (
           <div
