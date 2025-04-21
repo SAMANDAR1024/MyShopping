@@ -15,6 +15,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Strelka from "@/components/icons/strelka";
 
 export type CategoriesPage = {
   id: number;
@@ -28,6 +29,9 @@ export type CategoriesPage = {
 };
 function CategorieProduct() {
   const [categoriaPage, setCategoriaPage] = useState<CategoriesPage[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(1);
+
   const params = useParams();
   const id = params?.id;
   useEffect(() => {
@@ -35,13 +39,15 @@ function CategorieProduct() {
     axios
 
       .get(
-        `https://nt.softly.uz/api/front/products?categoryId=${id}&page=1&limit=10`
+        `https://nt.softly.uz/api/front/products?categoryId=${id}&page=${page}&limit=4`
       )
       .then((res) => {
         console.log(res.data.items);
         setCategoriaPage(res.data.items);
+        const totalItems = res.data.total || 0;
+        setTotalPage(Math.ceil(totalItems / 10));
       });
-  }, [id]);
+  }, [id, page]);
   if (!id) return <div>ID topilmadi</div>;
   if (!categoriaPage) {
     return (
@@ -101,17 +107,24 @@ function CategorieProduct() {
       })}
       <Pagination>
         <PaginationContent>
+          {page > 1 && (
+            <PaginationItem onClick={() => setPage(page - 1)}>
+              <PaginationPrevious href="#" />
+              {/* <a href="#">
+              <Strelka />
+            </a> */}
+            </PaginationItem>
+          )}
+          {page > 1 && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
           <PaginationItem>
+            <PaginationLink href="#">{page}</PaginationLink>
+          </PaginationItem>
+          <PaginationItem onClick={() => setPage(page + 1)}>
             <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
