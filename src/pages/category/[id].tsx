@@ -112,8 +112,8 @@ function CategorieProduct() {
       <Pagination>
         <PaginationContent>
           {page > 1 && (
-            <PaginationItem onClick={() => setPage(page - 1)}>
-              <PaginationPrevious href="#" />
+            <PaginationItem onClick={() => setPage(page - 1)}> 
+              <PaginationPrevious  />
               {/* <a href="#">
               <Strelka />
             </a> */}
