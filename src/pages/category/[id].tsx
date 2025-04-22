@@ -1,21 +1,19 @@
 "use client";
 import Like from "@/components/icons/Like";
 import Shop from "@/components/icons/Shop";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
+  PaginationPrevious
 } from "@/components/ui/pagination";
-import Strelka from "@/components/icons/strelka";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export type CategoriesPage = {
   items: [
@@ -37,7 +35,6 @@ export type CategoriesPage = {
 function CategorieProduct() {
   const [categoriaPage, setCategoriaPage] = useState<CategoriesPage>();
   const [page, setPage] = useState<number>(1);
-  const [totalPage, setTotalPage] = useState<number>(1);
 
   const params = useParams();
   const id = params?.id;
@@ -51,8 +48,6 @@ function CategorieProduct() {
       .then((res) => {
         console.log(res.data);
         setCategoriaPage(res.data);
-        // const totalItems = res.data.total || 0;
-        // setTotalPage(Math.ceil(totalItems / 10));
       });
   }, [id, page]);
   if (!id) return <div>ID topilmadi</div>;
