@@ -18,17 +18,24 @@ import {
 import Strelka from "@/components/icons/strelka";
 
 export type CategoriesPage = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  stock: number;
-  categoryId: number;
-  createdAt: string;
-  imageUrl: string;
+  items: [
+    {
+      id: number;
+      name: string;
+      description: string;
+      price: number;
+      stock: number;
+      categoryId: number;
+      createdAt: string;
+      imageUrl: string;
+    }
+  ];
+  page: number;
+  limit: number;
+  totalItems: number;
 };
 function CategorieProduct() {
-  const [categoriaPage, setCategoriaPage] = useState<CategoriesPage[]>([]);
+  const [categoriaPage, setCategoriaPage] = useState<CategoriesPage>();
   const [page, setPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
 
@@ -42,13 +49,14 @@ function CategorieProduct() {
         `https://nt.softly.uz/api/front/products?categoryId=${id}&page=${page}&limit=4`
       )
       .then((res) => {
-        console.log(res.data.items);
-        setCategoriaPage(res.data.items);
-        const totalItems = res.data.total || 0;
-        setTotalPage(Math.ceil(totalItems / 10));
+        console.log(res.data);
+        setCategoriaPage(res.data);
+        // const totalItems = res.data.total || 0;
+        // setTotalPage(Math.ceil(totalItems / 10));
       });
   }, [id, page]);
   if (!id) return <div>ID topilmadi</div>;
+
   if (!categoriaPage) {
     return (
       <div className="cssload-container">
@@ -62,17 +70,18 @@ function CategorieProduct() {
       </div>
     );
   }
-  if (categoriaPage.length === 0) {
+  if (categoriaPage.totalItems === 0) {
     return (
       <div className="mx-auto container text-center mt-20 text-4xl ">
         Malumot Yoq
       </div>
     );
   }
+  const total = Math.ceil(categoriaPage.totalItems / 4);
 
   return (
     <div className="flex flex-wrap justify-around gap-10 container w-full mx-auto px-16 py-4">
-      {categoriaPage.map((item) => {
+      {categoriaPage.items.map((item) => {
         return (
           <div
             key={item.id}
@@ -123,9 +132,11 @@ function CategorieProduct() {
           <PaginationItem>
             <PaginationLink href="#">{page}</PaginationLink>
           </PaginationItem>
-          <PaginationItem onClick={() => setPage(page + 1)}>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
+          {page < total && (
+            <PaginationItem onClick={() => setPage(page + 1)}>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+          )}
         </PaginationContent>
       </Pagination>
     </div>
