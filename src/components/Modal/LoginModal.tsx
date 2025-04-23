@@ -1,24 +1,23 @@
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
 } from "@/components/ui/dialog";
-import { useState } from "react";
-import UserIcon from "../icons/User";
-import { LoginForm } from "./LoginForm";
-import { useSelector } from "react-redux";
 import { RootState } from "@/store/types";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import Link from "next/link";
-import Login from "@/pages/login";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import UserIcon from "../icons/User";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { LoginForm } from "./LoginForm";
 
 export function LoginDialog() {
   const [open, setOpen] = useState(false);

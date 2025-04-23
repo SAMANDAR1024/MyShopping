@@ -11,3 +11,22 @@ export type ProductType = {
   price: number;
   stock: number;
 };
+
+
+export type CategoriesPage = {
+    items: [
+      {
+        id: number;
+        name: string;
+        description: string;
+        price: number;
+        stock: number;
+        categoryId: number;
+        createdAt: string;
+        imageUrl: string;
+      }
+    ];
+    page: number;
+    limit: number;
+    totalItems: number;
+  };

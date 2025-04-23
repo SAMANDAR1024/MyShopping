@@ -19,7 +19,7 @@ export type Product = {
 };
 
 export const getServerSideProps = async ({
-  params
+  params,
 }: GetServerSidePropsContext) => {
   const res = await fetch(
     `https://nt.softly.uz/api/front/products/${params?.id}`
@@ -28,9 +28,9 @@ export const getServerSideProps = async ({
   return { props: { product: product } };
 };
 
-function Product({ product }: any) {
-  console.log(product); 
-  
+function Product({ product }: {product: ProductType}) {
+  console.log(product);
+
   const dispatch = useDispatch();
   if (!product) {
     return (
@@ -70,7 +70,7 @@ function Product({ product }: any) {
               {product.description}
             </p>
             <p className="text-2xl font-semibold text-blue-600 mt-4">
-              {(product.price).toLocaleString("ru")} So`m
+              {product.price.toLocaleString("ru")} So`m
             </p>
             <p className="flex justify-center md:justify-start items-center gap-2 text-lg mt-2">
               <span className="font-medium">Stock:</span>
