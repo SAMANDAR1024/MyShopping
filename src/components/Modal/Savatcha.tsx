@@ -72,6 +72,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
       })
       .catch((e) => {
         console.error("Xatolik yuz berdi:", e);
+        toast.error("Xatolik yuz berdi");
       })
       .finally(() => {
         setIsLoading(false);
