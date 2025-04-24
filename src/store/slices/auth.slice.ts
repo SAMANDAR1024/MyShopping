@@ -9,7 +9,7 @@ type AuthSliceType = {
     image: string;
     phone: string;
     role: string;
-  }; 
+  };
 };
 const initialState: AuthSliceType = {
   accessToken:
@@ -30,7 +30,16 @@ export const authSlice = createSlice({
       state.accessToken = payload.accessToken;
       state.user = payload.user;
     },
+
+    logout: (state) => {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("user");
+      }
+      state.accessToken = "";
+      state.user = undefined;
+    },
   },
 });
 
-export const { login } = authSlice.actions;
+export const { login, logout } = authSlice.actions;

@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { login } from "@/store/slices/auth.slice";
 import axios from "axios";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
@@ -34,13 +35,15 @@ const formSchema = z.object({
 type LoginFormType = z.infer<typeof formSchema>;
 
 export function LoginForm({ onClose }: { onClose: (open: boolean) => void }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<LoginFormType>({
     resolver: zodResolver(formSchema),
   });
 
   const dispatch = useDispatch();
   function onSubmit(values: LoginFormType) {
-    console.log(values);
+    setIsLoading(true);
     axios
       .post("https://nt.softly.uz/api/auth/login", values)
       .then((res) => {
@@ -52,13 +55,16 @@ export function LoginForm({ onClose }: { onClose: (open: boolean) => void }) {
         }
         dispatch(login({ accessToken, user }));
 
-        toast.success("Oxshadii...");
+        toast.success("SAMANDAR.SHOPGA HUSH KELIBSIZ...");
         onClose(false);
         dispatch(login(res.data));
       })
       .catch((error) => {
         console.log(error);
         toast.error("Xato!!!");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -93,7 +99,16 @@ export function LoginForm({ onClose }: { onClose: (open: boolean) => void }) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+              Loading...
+            </span>
+          ) : (
+            "Submit"
+          )}
+        </Button>
       </form>
     </Form>
   );

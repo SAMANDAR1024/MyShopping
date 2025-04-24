@@ -2,7 +2,7 @@ import UserIcon from "@/components/icons/User";
 import { RootState } from "@/store/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Exit from "../../components/icons/exit";
 import Lokation from "../../components/icons/location-01-stroke-rounded";
 import MeningKartam from "../../components/icons/MeningKartam";
@@ -12,13 +12,17 @@ import Strelka from "../../components/icons/strelka";
 import TolovTarixi from "../../components/icons/Tarixi";
 import Tolovlarim from "../../components/icons/tolovlarim";
 import MyOrders from "@/components/layout/MyOrders";
+import { logout } from "@/store/slices/auth.slice";
 
 export default function Login() {
   const name = useSelector((state: RootState) => state.auth.user?.name);
   const email = useSelector((state: RootState) => state.auth.user?.email);
   const [activeTab, setActiveTab] = useState("profile");
   const [isClient, setIsClient] = useState(false);
-
+  const dispatch = useDispatch();
+  const Logout = () => {
+    dispatch(logout());
+  };
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -88,6 +92,7 @@ export default function Login() {
                   </p>
                 </div>
                 <Link
+                onClick={Logout}
                   href={"/"}
                   className="flex transition transform hover:-translate-y-1  duration-200  hover:shadow-md hover:bg-white p-2 cursor-pointer gap-6 items-center"
                 >
