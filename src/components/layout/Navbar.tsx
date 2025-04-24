@@ -6,8 +6,10 @@ import { useState } from "react";
 import Savatcha from "../Modal/Savatcha";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { LoginDialog } from "../Modal/LoginModal";
-
+import dynamic from "next/dynamic";
+const LoginDialog = dynamic(() => import("../Modal/LoginModal"), {
+  ssr: false,
+});
 function Navbar() {
   const [modal, setModal] = useState(false);
   const cartCount = useSelector((state: RootState) => state.cart.items.length);

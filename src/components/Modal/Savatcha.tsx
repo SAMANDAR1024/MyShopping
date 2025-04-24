@@ -1,11 +1,17 @@
-import { minusCount, plusCount, removeCart } from "@/store/slices/cart.slice";
+import {
+  minusCount,
+  plusCount,
+  removeCart,
+  fullRemove,
+} from "@/store/slices/cart.slice";
 import { RootState } from "@/store/types";
 import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Remove from "../icons/remove";
 import Tavsiya from "../layout/Tavsiya";
+import { toast } from "sonner";
 
 export type Savat = {
   modal: boolean;
@@ -15,7 +21,9 @@ export type Savat = {
 const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const token = useSelector((state: RootState) => state.auth.accessToken);
-console.log(token);
+  const [isLoading, setIsLoading] = useState(false);
+  const [address, setAddress] = useState("");
+  console.log(token);
 
   const dispatch = useDispatch();
 
@@ -23,16 +31,33 @@ console.log(token);
     dispatch(removeCart(id));
   };
 
+  const fulRemove = () => {
+    dispatch(fullRemove());
+  };
+
   const AxiosOrders = () => {
+    if (!address.trim()) {
+      alert("Manzilni kiriting!");
+      return;
+    }
+    console.log("Token:", token);
+    if (!token) {
+      alert("Avval login bo‘ling");
+      return;
+    }
+
+    setIsLoading(true);
     axios
       .post(
         "https://nt.softly.uz/api/front/orders",
         {
-          address: "sdfgdf d tr r",
-          items: cartItems.map((item) => ({
-            productId: item.id,
-            quantity: item.count,
-          })),
+          address: address,
+          items: cartItems
+            .filter((item) => item.count > 0)
+            .map((item) => ({
+              productId: item.id,
+              quantity: item.count,
+            })),
         },
         {
           headers: {
@@ -42,9 +67,14 @@ console.log(token);
       )
       .then((res) => {
         console.log("Buyurtma jo‘natildi:", res.data);
+        toast.success("Buyurtma jo‘natildi");
+        fulRemove();
       })
       .catch((e) => {
         console.error("Xatolik yuz berdi:", e);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -53,6 +83,13 @@ console.log(token);
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.count,
     0
+  );
+
+  console.log(
+    cartItems.map((item) => ({
+      productId: item.id,
+      quantity: item.count,
+    }))
   );
 
   return (
@@ -130,7 +167,7 @@ console.log(token);
                     ))}
                   </div>
                   <div className="flex flex-col ">
-                    <div className="border h-48 border-slate-400 rounded-xl p-4 w-96">
+                    <div className="border h-60 border-slate-400 rounded-xl p-4 w-96">
                       <div className="bg-slate-200 rounded-xl p-1 flex gap-2">
                         <button className="w-full cursor-pointer bg-white rounded-xl">
                           Hoziroq Tanlash
@@ -152,15 +189,25 @@ console.log(token);
                         <p>Jami:</p>
                         <p>{totalPrice.toLocaleString("ru")} som </p>
                       </div>
+                      <input
+                        placeholder="Manzil Kiriting Toliq holatda"
+                        className="border-1 border-[lightgrey] outline-none p-2  my-4 w-full rounded-lg"
+                        value={address}
+                        onChange={(e) => {
+                          setAddress(e.target.value);
+                        }}
+                        type="text"
+                      />
                     </div>
 
                     <button
+                      disabled={isLoading}
                       onClick={() => {
                         AxiosOrders();
                       }}
                       className="cursor-pointer bg-blue-500 text-white rounded-2xl p-3 text-2xl mt-5"
                     >
-                      Rasmiylashtirish
+                      {isLoading ? "Yuklanmoqda" : "Rasmiylashtirish"}
                     </button>
                   </div>
                 </div>

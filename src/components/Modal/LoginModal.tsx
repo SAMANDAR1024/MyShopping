@@ -19,16 +19,13 @@ import {
 } from "../ui/dropdown-menu";
 import { LoginForm } from "./LoginForm";
 
-export function LoginDialog() {
+export default function LoginDialog() {
   const [open, setOpen] = useState(false);
   const name = useSelector((s: RootState) => s.auth.user?.name);
   return (
     <>
       {name ? (
-        // <div className="flex flex-col items-center text-xs sm:text-sm">
-        //
-        //   {name}
-        // </div>
+       
 
         <Link href={"/login"}>
           <DropdownMenu>

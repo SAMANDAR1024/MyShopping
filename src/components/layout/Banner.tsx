@@ -38,7 +38,7 @@ const Banner = () => {
         <button
           onClick={handlePrev}
           aria-label="Previous slide"
-          className="absolute top-1/2 left-2 sm:left-4 z-20 -translate-y-1/2 p-1 sm:p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
+          className="absolute top-1/2 left-2 sm:left-4 z-10 -translate-y-1/2 p-1 sm:p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
         >
           ←
         </button>
@@ -47,7 +47,7 @@ const Banner = () => {
         <button
           onClick={handleNext}
           aria-label="Next slide"
-          className="absolute top-1/2 right-2 sm:right-4 z-20 -translate-y-1/2 p-1 sm:p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
+          className="absolute top-1/2 right-2 sm:right-4 z-10 -translate-y-1/2 p-1 sm:p-2 bg-[#2C698D] rounded-full text-white hover:bg-black/60 transition"
         >
           →
         </button>
