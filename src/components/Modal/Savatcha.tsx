@@ -1,5 +1,6 @@
 import { minusCount, plusCount, removeCart } from "@/store/slices/cart.slice";
 import { RootState } from "@/store/types";
+import axios from "axios";
 import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +14,40 @@ export type Savat = {
 
 const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const token = useSelector((state: RootState) => state.auth.accessToken);
+console.log(token);
 
   const dispatch = useDispatch();
 
   const remove = (id: number) => {
     dispatch(removeCart(id));
   };
+
+  const AxiosOrders = () => {
+    axios
+      .post(
+        "https://nt.softly.uz/api/front/orders",
+        {
+          address: "sdfgdf d tr r",
+          items: cartItems.map((item) => ({
+            productId: item.id,
+            quantity: item.count,
+          })),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Buyurtma jo‘natildi:", res.data);
+      })
+      .catch((e) => {
+        console.error("Xatolik yuz berdi:", e);
+      });
+  };
+
   if (!modal) return null;
 
   const totalPrice = cartItems.reduce(
@@ -124,30 +153,17 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
                         <p>{totalPrice.toLocaleString("ru")} som </p>
                       </div>
                     </div>
+
                     <button
-                      onClick={() => setModal(false)}
+                      onClick={() => {
+                        AxiosOrders();
+                      }}
                       className="cursor-pointer bg-blue-500 text-white rounded-2xl p-3 text-2xl mt-5"
                     >
                       Rasmiylashtirish
                     </button>
                   </div>
                 </div>
-
-                {/* <div className="text-end">
-                <p className="text-2xl  ">
-                  Jami Narxi :{" "}
-                  <span className="font-bold">
-                    {" "}
-                    {totalPrice.toLocaleString("ru")} So`m
-                  </span>
-                </p>
-                <button
-                  onClick={() => setModal(false)}
-                  className="bg-blue-500 text-white p-2 rounded-2xl w-66 mt-3 cursor-pointer"
-                >
-                  Harid Qilish
-                </button>
-              </div> */}
               </>
             ) : (
               <div className="text-center flex flex-col">

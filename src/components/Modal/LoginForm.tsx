@@ -44,7 +44,15 @@ export function LoginForm({ onClose }: { onClose: (open: boolean) => void }) {
     axios
       .post("https://nt.softly.uz/api/auth/login", values)
       .then((res) => {
-        toast.success("Oxwadii...");
+        const { accessToken, user } = res.data;
+
+        if (typeof window !== "undefined") {
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+        dispatch(login({ accessToken, user }));
+
+        toast.success("Oxshadii...");
         onClose(false);
         dispatch(login(res.data));
       })

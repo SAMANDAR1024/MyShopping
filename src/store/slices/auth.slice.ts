@@ -9,10 +9,17 @@ type AuthSliceType = {
     image: string;
     phone: string;
     role: string;
-  };
+  }; 
 };
 const initialState: AuthSliceType = {
-  accessToken: undefined,
+  accessToken:
+    typeof window !== "undefined"
+      ? localStorage.getItem("accessToken") || undefined
+      : undefined,
+  user:
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user") || "null") || undefined
+      : undefined,
 };
 
 export const authSlice = createSlice({
