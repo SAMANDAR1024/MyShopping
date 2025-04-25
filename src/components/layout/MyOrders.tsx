@@ -17,6 +17,16 @@ export type OrderType = {
           productId: number;
           quantity: number;
           price: number;
+          product: {
+            id: number;
+            name: string;
+            description: string;
+            price: number;
+            stock: number;
+            categoryId: number;
+            createdAt: string;
+            imageUrl: string;
+          };
         }
       ];
     }
@@ -73,8 +83,8 @@ function MyOrders() {
               <p className="text-green-600 font-semibold text-md">
                 {order.items
                   .reduce((total, i) => total + i.price * i.quantity, 0)
-                  .toLocaleString("ru")}
-                {" "}So`m
+                  .toLocaleString("ru")}{" "}
+                So`m
               </p>
             </div>
             <p className="mb-1">
@@ -88,20 +98,20 @@ function MyOrders() {
               </span>
             </p>
             <div className="space-y-2 mt-4">
-              {order.items.map((product) => (
+              {order.items.map((item) => (
                 <div
-                  key={product.id}
+                  key={item.id}
                   className="flex justify-between items-center border border-gray-200 rounded-xl p-3 bg-gray-50"
                 >
                   <div>
-                    <p className="text-sm font-medium">
-                      Product ID: {product.productId}
-                    </p>
+                    <p className="text-sm font-medium">{item.product.name}</p>
                     <p className="text-sm text-gray-600">
-                      Quantity: {product.quantity}
+                      Quantity: {item.quantity}
                     </p>
                   </div>
-                  <p className="text-sm font-semibold">{(product.price).toLocaleString("ru")}{" "}So`m</p>
+                  <p className="text-sm font-semibold">
+                    {item.product.price.toLocaleString("ru")} So`m
+                  </p>
                 </div>
               ))}
             </div>

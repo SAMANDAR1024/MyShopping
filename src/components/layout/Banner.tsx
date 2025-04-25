@@ -34,7 +34,6 @@ const Banner = () => {
     <div className="w-full px-4 md:px-8">
       <div className="relative w-full max-w-[1400px] mx-auto mt-4 h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] overflow-hidden rounded-2xl shadow-lg group">
         
-        {/* Prev button */}
         <button
           onClick={handlePrev}
           aria-label="Previous slide"
@@ -43,7 +42,6 @@ const Banner = () => {
           ←
         </button>
 
-        {/* Next button */}
         <button
           onClick={handleNext}
           aria-label="Next slide"
@@ -51,8 +49,6 @@ const Banner = () => {
         >
           →
         </button>
-
-        {/* Banner content */}
         {banners.length > 0 ? (
           <div
             key={banners[current].id}
@@ -67,7 +63,6 @@ const Banner = () => {
             />
 
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70 rounded-2xl flex items-end px-4 sm:px-6 pb-6">
-              {/* You can show banner title here */}
               <p className="text-white text-sm sm:text-lg font-medium">{banners[current].title}</p>
             </div>
           </div>
