@@ -1,5 +1,6 @@
 import { RootState } from "@/store/types";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 export type OrderType = {
@@ -72,11 +73,11 @@ function MyOrders() {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-semibold mb-4">My Orders</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {orders?.items.map((order) => (
           <div
             key={order.id}
-            className="border border-gray-300 w-72 rounded-2xl shadow-md p-5 bg-white hover:shadow-lg transition-all duration-300"
+            className="border border-gray-300 w-[450px] rounded-2xl shadow-md p-5 bg-white hover:shadow-lg transition-all duration-300"
           >
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-sm font-bold">Order ID: {order.id}</h3>
@@ -103,11 +104,20 @@ function MyOrders() {
                   key={item.id}
                   className="flex justify-between items-center border border-gray-200 rounded-xl p-3 bg-gray-50"
                 >
-                  <div>
-                    <p className="text-sm font-medium">{item.product.name}</p>
-                    <p className="text-sm text-gray-600">
-                      Quantity: {item.quantity}
-                    </p>
+                  <div className="flex items-center gap-2">
+                      <Image
+                        src={item.product.imageUrl}
+                        width={50}
+                        height={50}
+                        alt="Image"
+                      />
+                    
+                    <div>
+                      <p className="text-sm font-medium">{item.product.name}</p>
+                      <p className="text-sm text-gray-600">
+                        Quantity: {item.quantity}
+                      </p>
+                    </div>
                   </div>
                   <p className="text-sm font-semibold">
                     {item.product.price.toLocaleString("ru")} So`m
