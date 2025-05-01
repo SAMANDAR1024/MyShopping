@@ -44,18 +44,18 @@ function Products() {
     );
   }
   return (
-    <div className="flex flex-wrap gap-6 container w-full mx-auto justify-center px-6 py-4">
+    <div className="grid grid-cols-4 gap-7 container w-full mx-auto justify-center px-6 py-4">
       {products.map((item) => {
         const isLiked = likedItems.some((liked) => liked.id === item.id);
         return (
           <div key={item.id}>
-            <div className="w-64 flex flex-col justify-between h-[400px] relative mb-5 p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
+            <div className="w-64 flex flex-col justify-between h-[500px] relative mb-5 p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
               <Link href={`/product/${item.id}`}>
                 <Image
                   width={200}
                   height={250}
-                  style={{height:200}}
-                  className="object-cover h-[300px] rounded-2xl"
+                  style={{height:250}}
+                  className="object-cover h-[250px] rounded-2xl"
                   src={item.imageUrl}
                   alt="rasm"
                 />
