@@ -53,8 +53,9 @@ function Products() {
               <Link href={`/product/${item.id}`}>
                 <Image
                   width={200}
-                  height={200}
+                  height={250}
                   style={{height:200}}
+                  className="object-cover h-[300px] rounded-2xl"
                   src={item.imageUrl}
                   alt="rasm"
                 />

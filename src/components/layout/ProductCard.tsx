@@ -26,7 +26,7 @@ function ProductCard({ item }: Props) {
     <div key={item.id}>
       <div className="w-64 flex flex-col gap-0 justify-between h-[400px] relative  p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
         <Link href={`/product/${item.id}`}>
-          <Image width={200} height={100} style={{height:200}} src={item.imageUrl} alt="rasm" />
+          <Image width={200} className="object-cover h-[250px] rounded-2xl" height={100} style={{height:250}}  src={item.imageUrl} alt="rasm" />
         </Link>
         <h2 className="my-2 cursor-pointer">{item.name}</h2>
         <p className="j opacity-90 text-sm">{item.description}</p>
