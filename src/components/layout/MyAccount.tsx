@@ -7,6 +7,7 @@ import { RootState } from "@/store/types";
 
 function MyAccount({ isClient }: { isClient: boolean }) {
   const name = useSelector((state: RootState) => state.auth.user?.name);
+
   return (
     <>
       <div className="w-[460px] h-52 border border-gray-300 rounded-xl">
@@ -26,7 +27,8 @@ function MyAccount({ isClient }: { isClient: boolean }) {
         <div className="p-4">
           <p className="font-bold">{name}</p>
           <p className="mt-4">
-            <span className="opacity-35">Telefon : </span>+998 94 408 54 44
+            <span className="opacity-35">Telefon : </span>
+            +998944085444{" "}
           </p>
         </div>
       </div>
