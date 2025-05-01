@@ -45,7 +45,7 @@ export default function Login() {
             <div className="w-96 flex flex-col ">
               <div
                 onClick={() => setActiveTab("profile")}
-                className="flex mb-7 items-center gap-4"
+                className="flex mb-7 cursor-pointer items-center gap-4"
               >
                 <div className="rounded-full flex justify-center pt-3 bg-slate-200 w-12 h-12">
                   <UserIcon />

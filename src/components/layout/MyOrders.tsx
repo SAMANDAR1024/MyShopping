@@ -41,7 +41,7 @@ function MyOrders() {
   useEffect(() => {
     axios
       .get(
-        "https://nt.softly.uz/api/front/orders?limit=10&page=1&order=ASC&status=pending&customerId=1",
+        "https://nt.softly.uz/api/front/orders?limit=10&page=1&order=ASC&status=pending",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,7 +55,6 @@ function MyOrders() {
       })
       .catch((e) => {
         toast.error("Buyurtma yetarli Emas");
-        
         console.error(e);
       });
   }, [token]);
@@ -123,7 +122,7 @@ function MyOrders() {
                       </p>
                     </div>
                   </div>
-                  <p className="text-sm font-semibold">
+                   <p className="text-sm font-semibold">
                     {item.product.price.toLocaleString("ru")} So`m
                   </p>
                 </div>

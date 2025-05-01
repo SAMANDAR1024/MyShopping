@@ -1,6 +1,5 @@
 import { RootState } from "@/store/types";
 import axios from "axios";
-import { log } from "console";
 import { useSelector } from "react-redux";
 
 function Orders() {
