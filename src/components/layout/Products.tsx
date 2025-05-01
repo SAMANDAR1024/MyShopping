@@ -53,7 +53,7 @@ function Products() {
               <Link href={`/product/${item.id}`}>
                 <Image
                   width={200}
-                  height={350}
+                  height={200}
                   src={item.imageUrl}
                   alt="rasm"
                 />
