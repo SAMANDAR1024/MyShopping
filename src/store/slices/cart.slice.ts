@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductType } from "../types";
+import { toast } from "sonner";
 
 export type CartProductType = ProductType & { count: number };
 
@@ -21,6 +22,7 @@ export const cartSlice = createSlice({
       );
       if (cartItem) {
         cartItem.count += 1;
+        toast.success("Savatchaga qoshildi")
       } else {
         state.items.push({ ...action.payload, count: 1 });
       }

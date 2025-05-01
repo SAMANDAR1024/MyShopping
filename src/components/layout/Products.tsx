@@ -54,6 +54,7 @@ function Products() {
                 <Image
                   width={200}
                   height={200}
+                  style={{height:200}}
                   src={item.imageUrl}
                   alt="rasm"
                 />

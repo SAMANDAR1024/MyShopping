@@ -70,9 +70,8 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
         toast.success("Buyurtma jo‘natildi");
         fulRemove();
       })
-      .catch((e) => {
-        console.error("Xatolik yuz berdi:", e);
-        toast.error("Xatolik yuz berdi");
+      .catch(() => {
+        toast.error("Maxsulot Qolmagan Sal Keyinroq Urinib Korin!!!");
       })
       .finally(() => {
         setIsLoading(false);

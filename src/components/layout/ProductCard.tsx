@@ -24,13 +24,13 @@ function ProductCard({ item }: Props) {
   const isLiked = likedItems.some((liked) => liked.id === item.id);
   return (
     <div key={item.id}>
-      <div className="w-64 flex flex-col justify-between h-[400px] relative mb-5 p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
+      <div className="w-64 flex flex-col gap-0 justify-between h-[400px] relative  p-6 cursor-pointer bg-white hover:shadow-lg rounded-2xl">
         <Link href={`/product/${item.id}`}>
-          <Image width={200} height={200} src={item.imageUrl} alt="rasm" />
+          <Image width={200} height={100} style={{height:200}} src={item.imageUrl} alt="rasm" />
         </Link>
         <h2 className="my-2 cursor-pointer">{item.name}</h2>
         <p className="j opacity-90 text-sm">{item.description}</p>
-        <div className="flex items-center mt-10 justify-between">
+        <div className="flex items-center  justify-between">
           <p className="cursor-pointer">
             <span className="font-bold text-lg">
               {item.price.toLocaleString("ru")}

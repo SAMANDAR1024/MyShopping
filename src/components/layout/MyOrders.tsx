@@ -3,6 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "sonner";
 export type OrderType = {
   items: [
     {
@@ -48,10 +49,13 @@ function MyOrders() {
         }
       )
       .then((res) => {
-        console.log(res.data);
         setOrders(res.data);
+        toast.success("Buyurtma jo‘natildi");
+
       })
       .catch((e) => {
+        toast.error("Buyurtma yetarli Emas");
+        
         console.error(e);
       });
   }, [token]);
