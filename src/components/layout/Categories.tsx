@@ -1,20 +1,15 @@
+import { CategoriesType } from "@/store/types";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export type CategoriesType = {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: string;
-};
+
 
 function Categories() {
-  const [categories, setCategories] = useState<CategoriesType[]>([]);
+  const [categories, setCategories] = useState<CategoriesType>([]);
 
   useEffect(() => {
     axios.get("https://nt.softly.uz/api/front/categories").then((res) => {
-      console.log(res.data);
       setCategories(res.data);
     });
   }, []);

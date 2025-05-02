@@ -17,7 +17,6 @@ function Tavsiya() {
     axios
       .get(`https://nt.softly.uz/api/front/products?page=1&limit=10`)
       .then((res) => {
-        console.log(res.data.items);
         setProducts(res.data.items);
       });
   }, []);

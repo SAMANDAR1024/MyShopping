@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import { BAnnerType } from "@/store/types";
 
-export type BAnnerType = {
-  id: number;
-  title: string;
-  imageUrl: string;
-  isActive: boolean;
-  createdAt: string;
-};
+
 
 const Banner = () => {
-  const [banners, setBanners] = useState<BAnnerType[]>([]);
+  const [banners, setBanners] = useState<BAnnerType>([]);
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {

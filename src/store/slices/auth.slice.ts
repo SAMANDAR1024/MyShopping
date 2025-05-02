@@ -1,16 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-type AuthSliceType = {
-  accessToken?: string;
-  user?: {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    image: string;
-    phone: string;
-    role: string;
-  };
-};
+import { AuthSliceType } from "../types";
+
 const initialState: AuthSliceType = {
   accessToken:
     typeof window !== "undefined"

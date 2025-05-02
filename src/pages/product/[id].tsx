@@ -7,16 +7,7 @@ import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 
-export type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  stock: number;
-  categoryId: number;
-  createdAt: string;
-  imageUrl: string;
-};
+
 
 export const getServerSideProps = async ({
   params,
@@ -28,8 +19,7 @@ export const getServerSideProps = async ({
   return { props: { product: product } };
 };
 
-function Product({ product }: {product: ProductType}) {
-  console.log(product);
+function Product({ product }: { product: ProductType }) {
 
   const dispatch = useDispatch();
   if (!product) {

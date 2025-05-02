@@ -53,9 +53,8 @@ function MyOrders() {
         toast.success("Buyurtma jo‘natildi");
 
       })
-      .catch((e) => {
+      .catch(() => {
         toast.error("Buyurtma yetarli Emas");
-        console.error(e);
       });
   }, [token]);
 

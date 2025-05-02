@@ -22,15 +22,12 @@ function Navbar() {
       <Savatcha modal={modal} setModal={setModal} />
 
       <nav className="w-full max-w-[1400px] mx-auto px-10 md:px-8 py-4 flex flex-wrap gap-y-4 gap-x-5 items-center justify-between">
-        {/* Logo */}
         <div>
-          {" "}
           <Link className="text-xl md:text-2xl font-bold" href={"/"}>
             SAMANDAR.SHOP
           </Link>
         </div>
 
-        {/* Search & Katalog */}
         <div className="flex items-center gap-2 sm:gap-4 flex-1 sm:flex-initial">
           <Katalog />
           <input
@@ -40,7 +37,6 @@ function Navbar() {
           />
         </div>
 
-        {/* Icons */}
         <div className="flex gap-4 sm:gap-6 md:gap-10">
           <LoginDialog />
 

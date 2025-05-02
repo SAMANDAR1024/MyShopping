@@ -24,8 +24,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
   const token = useSelector((state: RootState) => state.auth.accessToken);
   const [isLoading, setIsLoading] = useState(false);
   const [address, setAddress] = useState("");
-  console.log(token);
-const router= useRouter()
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const remove = (id: number) => {
@@ -66,11 +65,10 @@ const router= useRouter()
           },
         }
       )
-      .then((res) => {
-        console.log("Buyurtma jo‘natildi:", res.data);
+      .then(() => {
         toast.success("Buyurtma jo‘natildi");
         fulRemove();
-        router.push("/login")
+        router.push("/login");
       })
       .catch(() => {
         toast.error("Maxsulot Qolmagan Sal Keyinroq Urinib Korin!!!");
@@ -202,12 +200,11 @@ const router= useRouter()
                       />
                     </div>
 
-                    
                     <button
                       disabled={isLoading}
                       onClick={() => {
                         AxiosOrders();
-                        setModal(false)
+                        setModal(false);
                       }}
                       className="cursor-pointer bg-blue-500 text-white rounded-2xl p-3 text-2xl mt-5"
                     >

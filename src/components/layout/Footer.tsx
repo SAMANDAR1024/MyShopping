@@ -1,6 +1,3 @@
-// import telegram from "../../assets/icons/telegram.svg";
-// import instagram from "../../assets/icons/instagram.svg";
-// import yotube from "../../assets/icons/yotube.svg";
 
 function Footer() {
   return (
@@ -15,9 +12,6 @@ function Footer() {
             +998 94 408 54 44
           </a>{" "}
           <div className=" flex p-2 gap-3">
-            {/* <Image width={40} height={40} src={telegram} alt="telegram" />
-            <Image width={40} height={40} src={instagram} alt="instagram" />
-            <Image width={40} height={40} src={yotube} alt="youtube" /> */}
           </div>
           <p className=" font-semibold underline">Do`konlar manzillari</p>
         </div>
