@@ -1,17 +1,18 @@
 import {
+  fullRemove,
   minusCount,
   plusCount,
   removeCart,
-  fullRemove,
 } from "@/store/slices/cart.slice";
 import { RootState } from "@/store/types";
 import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 import Remove from "../icons/remove";
 import Tavsiya from "../layout/Tavsiya";
-import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 export type Savat = {
   modal: boolean;
@@ -24,7 +25,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [address, setAddress] = useState("");
   console.log(token);
-
+const router= useRouter()
   const dispatch = useDispatch();
 
   const remove = (id: number) => {
@@ -69,6 +70,7 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
         console.log("Buyurtma jo‘natildi:", res.data);
         toast.success("Buyurtma jo‘natildi");
         fulRemove();
+        router.push("/login")
       })
       .catch(() => {
         toast.error("Maxsulot Qolmagan Sal Keyinroq Urinib Korin!!!");
@@ -200,10 +202,12 @@ const Savatcha: React.FC<Savat> = ({ modal, setModal }) => {
                       />
                     </div>
 
+                    
                     <button
                       disabled={isLoading}
                       onClick={() => {
                         AxiosOrders();
+                        setModal(false)
                       }}
                       className="cursor-pointer bg-blue-500 text-white rounded-2xl p-3 text-2xl mt-5"
                     >
